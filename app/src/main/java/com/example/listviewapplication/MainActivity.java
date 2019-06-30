@@ -1,9 +1,9 @@
 package com.example.listviewapplication;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -82,12 +82,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                list.remove(position);
-                adapter.notifyDataSetChanged();
-                Toast.makeText(MainActivity.this, "Item Deleted!", Toast.LENGTH_LONG).show();
+                if(options[which].equals("Edit")){
+
+                    Toast.makeText(MainActivity.this, "You have clicked edit!", Toast.LENGTH_LONG).show();
+                }else if(options[which].equals("Delete")){
+
+                    list.remove(position);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(MainActivity.this, "Item Deleted!", Toast.LENGTH_LONG).show();
+                }
+
 
             }
         });
+
         AlertDialog dialog = builder.create();
         dialog.show();
 
