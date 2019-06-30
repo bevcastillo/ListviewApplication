@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     @Override
-    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
         Characters selectedCharacters = this.list.get(position);
 
@@ -80,6 +81,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         builder.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+                list.remove(position);
+                adapter.notifyDataSetChanged();
+                Toast.makeText(MainActivity.this, "Item Deleted!", Toast.LENGTH_LONG).show();
 
             }
         });
