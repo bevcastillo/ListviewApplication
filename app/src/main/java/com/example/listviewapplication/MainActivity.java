@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     ListView lv;
     ArrayList<Characters> list = new ArrayList<Characters>();
     CustomAdapter adapter;
-    AlertDialog.Builder builder;
+    AlertDialog.Builder builder1, builder2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list.add(new Characters(R.drawable.tony_stark,"Stark, Tony","BSME-5"));
 
         lv.setAdapter(adapter);
-        builder = new AlertDialog.Builder(this);
+        builder1 = new AlertDialog.Builder(this);
+        builder2 = new AlertDialog.Builder(this);
         lv.setOnItemClickListener(this);
         lv.setOnItemLongClickListener(this);
     }
@@ -55,10 +56,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         ImageView iv = new ImageView(this);
         iv.setImageResource(image);
 
-        builder.setTitle(""+name+ "\n" +course);
-        builder.setView(iv);
-        builder.setNeutralButton("Okay", null);
-        AlertDialog dialog = builder.create();
+        builder1.setTitle(""+name+ "\n" +course);
+        builder1.setView(iv);
+        builder1.setNeutralButton("Okay", null);
+
+        AlertDialog dialog = builder1.create();
         dialog.show();
 
     }
@@ -67,18 +69,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-        Characters selectedCharacters = this.list.get(position);
-
-        int image = selectedCharacters.getImg();
-        String name = selectedCharacters.getName();
-        String course = selectedCharacters.getCourse();
-        ImageView iv = new ImageView(this);
-        iv.setImageResource(image);
-
         final CharSequence[] options = {"Edit", "Delete"};
 
-        builder.setTitle("");
-        builder.setItems(options, new DialogInterface.OnClickListener() {
+        builder2.setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -96,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
-        AlertDialog dialog = builder.create();
+        AlertDialog dialog = builder2.create();
         dialog.show();
 
 
