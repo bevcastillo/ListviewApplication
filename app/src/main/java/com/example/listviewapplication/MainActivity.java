@@ -62,10 +62,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         AlertDialog dialog = builder1.create();
         dialog.show();
+        dialog.getWindow().setLayout(1000, 1200); //customize the layout of your AlertDialog Box
 
     }
 
 
+    //when the items in the listview is long pressed
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
